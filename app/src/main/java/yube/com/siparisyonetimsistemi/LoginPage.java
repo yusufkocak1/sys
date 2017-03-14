@@ -2,13 +2,20 @@ package yube.com.siparisyonetimsistemi;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class LoginPage extends Activity {
 
@@ -24,6 +31,7 @@ public class LoginPage extends Activity {
         setContentView(R.layout.login_page);
         //Full screen
 
+
         getWindow().getDecorView().setSystemUiVisibility(
                           View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -32,31 +40,32 @@ public class LoginPage extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN // Top system menu
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         //design element adding method call
-        designElementadd();
+         designElementadd();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               connect();
 
 
-               if( user.getText().toString().equals("yusuf") && password.getText().toString().equals("yusuf326")){
-                    Intent cagir=new Intent("yube.com.siparisyonetimsistemi.TABLE");
-                    startActivity(cagir);
-               }else if(user.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
-                   Intent adminCagir=new Intent("yube.com.siparisyonetimsistemi.ADMINPANEL");
-                   startActivity(adminCagir);
-               }
-               else if(user.getText().toString().equals("Bx3fn") && password.getText().toString().equals("0325")){
-                   Intent adminCagir=new Intent(LoginPage.this,AdminPanel.class);
-                   startActivity(adminCagir);
-               }
-
-                else{
-                   ViewDialog alert = new ViewDialog();
-                   alert.showDialog(LoginPage.this, "Şifre yanlış");
-               }
-
-            }
-        });
+//               if( user.getText().toString().equals("yusuf") && password.getText().toString().equals("yusuf326")){
+//                    Intent cagir=new Intent("yube.com.siparisyonetimsistemi.TABLE");
+//                    startActivity(cagir);
+//               }else if(user.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
+//                   Intent adminCagir=new Intent("yube.com.siparisyonetimsistemi.ADMINPANEL");
+//                   startActivity(adminCagir);
+//               }
+//               else if(user.getText().toString().equals("Bx3fn") && password.getText().toString().equals("0325")){
+//                   Intent adminCagir=new Intent(LoginPage.this,AdminPanel.class);
+//                   startActivity(adminCagir);
+//               }
+//
+//                else{
+//                   ViewDialog alert = new ViewDialog();
+//                   alert.showDialog(LoginPage.this, "Şifre yanlış");
+//               }
+//
+           }
+   });
 
 
     }
@@ -68,6 +77,39 @@ public class LoginPage extends Activity {
         password=(EditText) findViewById(R.id.pass);
         login=(Button) findViewById(R.id.login);
 
+
+    }
+    private void connect(){
+        HttpURLConnection connection=null;
+        BufferedReader reader=null;
+        try {
+            URL url=new URL("192.168.1.40:5432/postgres");
+            connection =(HttpURLConnection) url.openConnection();
+            connection.connect();
+            InputStream stream=connection.getInputStream();
+            reader=new BufferedReader(new InputStreamReader(stream));
+            String line="";
+            StringBuffer buffer=new StringBuffer();
+            while((line=reader.readLine())!=null){
+                buffer.append(line);
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        finally {
+            if (connection!=null)
+                connection.disconnect();
+            if (reader!=null)
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
 
     }
 }

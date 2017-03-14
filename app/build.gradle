@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.2"
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "yube.com.siparisyonetimsistemi"
         minSdkVersion 17
@@ -31,4 +31,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.0'
 
 
+    compile 'com.android.support:recyclerview-v7:25.2.0'
 }
