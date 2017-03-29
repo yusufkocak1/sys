@@ -1,57 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:background="#ffffffff">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@android:color/holo_red_light"
+       android:id="@+id/linearLayout2">
+
+       <TextView
+           android:id="@+id/text_dialog"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:gravity="center"
+           android:text="TEXTO"
+           android:textColor="#ff000000"
+           android:textSize="50dp" />
+
+   </LinearLayout>
+
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollView2"
+    android:layout_below="@+id/linearLayout2"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentEnd="true"
+    android:layout_above="@+id/btn_dialog">
 
 
-    <LinearLayout
-        android:layout_width="378dp"
-        android:layout_height="124dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        android:background="@android:color/holo_red_light"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:id="@+id/linearLayout">
+   <ListView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/listview">
+   </ListView>
 
 
-        <TextView
-            android:gravity="center_horizontal"
-            android:id="@+id/table_no"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="75dp"
-            android:text="masa no" />
-    </LinearLayout>
 
+
+</ScrollView>
     <Button
         android:id="@+id/btn_dialog"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
         android:background="@android:color/holo_blue_dark"
         android:gravity="center_vertical|center_horizontal"
         android:text="OK"
         android:textColor="#ffffffff"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="233dp"
-        android:layout_marginTop="378dp"
-        android:layout_marginStart="233dp" />
+        android:layout_above="@+id/usern"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="21dp" />
+    <TextView
+        android:id="@+id/usern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/user" />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="368dp"
-        android:layout_height="230dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="140dp" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

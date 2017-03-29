@@ -16,6 +16,7 @@
         android:ems="10"
         android:id="@+id/username"
         android:hint="Kullanıcı Adı"
+        android:text="yusuf"
         android:backgroundTint="@android:color/white"
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"
@@ -33,6 +34,7 @@
         android:layout_height="43dp"
         android:inputType="textPassword"
         android:ems="10"
+        android:text="yusuf326"
         android:id="@+id/pass"
         android:hint="Şifre"
         tools:ignore="MissingConstraints"
@@ -75,4 +77,19 @@
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintVertical_bias="0.9" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:indicatorName="BallPulseIndicator"
+        />
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi"
+        android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="@style/AVLoadingIndicatorView"
+    android:visibility="visible"
+    app:indicatorName="BallPulseIndicator"
+    app:indicatorColor="ffffff"
+    />
 </android.support.constraint.ConstraintLayout>
