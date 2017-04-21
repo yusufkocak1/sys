@@ -32,7 +32,7 @@ public class AdminPanel extends AppCompatActivity {
     List<AdminPanel> liste=new ArrayList<>();
     public String kullanici;
     public String sifre;
-    String url="http://192.168.0.150/kullanici_insert.php";
+    String url="http://10.210.19.242/kullanici_insert.php";
     AlertDialog.Builder builder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,7 @@ textView.setText(stringBuilder);
                                                     public void onResponse(String response) {
 
                                                         builder.setTitle("Server Response");
+                                                        builder.setMessage("Response:" + response);
                                                         builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                                                     @Override
                                                                     public void onClick(DialogInterface dialog, int which) {
@@ -79,6 +80,9 @@ textView.setText(stringBuilder);
                                                                     }
                                                                 }
                                                         );
+
+                                                        AlertDialog alertDialog=builder.create();
+                                                        alertDialog.show();
 
                                                     }
                                                 }, new Response.ErrorListener()
@@ -95,7 +99,7 @@ textView.setText(stringBuilder);
                                                 Map<String, String> params = new HashMap<String, String>();
                                                 params.put("kullanici_adi", usern);
                                                 params.put("sifre", pass);
-                                                params.put("yetki", "1");
+                                                params.put("yetki", yetki);
 
 
                                                 return super.getParams();
