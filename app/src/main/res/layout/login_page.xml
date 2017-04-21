@@ -90,6 +90,6 @@
     style="@style/AVLoadingIndicatorView"
     android:visibility="visible"
     app:indicatorName="BallPulseIndicator"
-    app:indicatorColor="ffffff"
+    app:indicatorColor="@android:color/holo_red_light"
     />
 </android.support.constraint.ConstraintLayout>

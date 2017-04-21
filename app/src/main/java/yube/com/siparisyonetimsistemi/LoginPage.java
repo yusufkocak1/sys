@@ -3,8 +3,8 @@ package yube.com.siparisyonetimsistemi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -20,14 +20,13 @@ public class LoginPage extends Activity {
     EditText user, password;
     Button login;
     private Activity activity;
-
-
+    String url="http://192.168.0.150/kullanici_insert.php";
+   AlertDialog.Builder builder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
         //Full screen
-        final SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
 
 
         getWindow().getDecorView().setSystemUiVisibility(
@@ -49,8 +48,9 @@ public class LoginPage extends Activity {
             @Override
             public void onClick(View view) {
                 //  connect();
-                editor.putString("user", user.getText().toString());
-                editor.commit();
+
+                //10.210.0.1
+
 
 
                 if (user.getText().toString().equals("yusuf") && password.getText().toString().equals("yusuf326")) {
