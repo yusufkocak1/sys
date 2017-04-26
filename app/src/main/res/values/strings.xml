@@ -6,4 +6,11 @@
     <string name="action_search">Search</string>
     <string name="action_back">Back</string>
     <string name="user" />
+
+    <string-array name="yetki">
+        <item>Admin</item>
+        <item>Garson</item>
+        <item>Mutfak Personeli</item>
+        <item>Kasiyer</item>
+    </string-array>
 </resources>
