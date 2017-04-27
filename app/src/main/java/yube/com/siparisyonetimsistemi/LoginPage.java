@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class LoginPage extends Activity {
 
-    private String[] myDataset={"kebap","döner","ayran"};
+
 
     private static final String MY_PREFS_NAME = "login";
     //design variable
@@ -85,40 +85,6 @@ public class LoginPage extends Activity {
 
 
 
-
-   /* private void connect(){
-        HttpURLConnection connection=null;
-        BufferedReader reader=null;
-        try {
-            URL url=new URL("192.168.1.40:5432/postgres");
-            connection =(HttpURLConnection) url.openConnection();
-            connection.connect();
-            InputStream stream=connection.getInputStream();
-            reader=new BufferedReader(new InputStreamReader(stream));
-            String line="";
-            StringBuffer buffer=new StringBuffer();
-            while((line=reader.readLine())!=null){
-                buffer.append(line);
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        finally {
-            if (connection!=null)
-                connection.disconnect();
-            if (reader!=null)
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-        }
-
-    }*/
 }
 class ViewDialogL {
 

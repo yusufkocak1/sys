@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 
-$connection= pg_connect("host=localhost port=5432 dbname=sys user=postgres password=1");
+$connection= pg_connect("host=localhost port=5433 dbname=sys user=postgres password=1");
 try{
 $sql = 'Select * from kullanici;';
 $result=pg_query($connection,$sql);

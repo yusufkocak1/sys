@@ -34,12 +34,12 @@ public class AdminPanel extends AppCompatActivity {
     TextView textView;
     Button save;
     Spinner spinner;
-    String insertUrl="http://10.210.22.243/kullanici_insert.php";
+    String insertUrl="http://10.210.10.209/kullanici_insert.php";
     AlertDialog.Builder builder;
     RecyclerView recyclerView;
     RecyclerView.Adapter recyclerAdapter;
     RecyclerView.LayoutManager layoutManager;
-    ArrayList<Contact> arrayList=new ArrayList<>();
+    ArrayList<Contact> arrayList=new ArrayList<>();//Cekilen kullanıcı verılerı arraylıste eklenıyor.bu degıskenı onun ıcın kullanacagım.
 
 
 
@@ -66,7 +66,7 @@ public class AdminPanel extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);//Ust taraf menu
 
 
         return true;
@@ -102,7 +102,7 @@ public class AdminPanel extends AppCompatActivity {
        pass = password.getText().toString();
 
        yetki =spinner.getSelectedItemPosition();
-       StringRequest stringRequest = new StringRequest(Request.Method.POST, insertUrl,
+       StringRequest stringRequest = new StringRequest(Request.Method.POST, insertUrl,/*php sayfasına ulasmak ıcın yazıyoruz*/
                new Response.Listener<String>() {
                    @Override
                    public void onResponse(String response) {
@@ -135,7 +135,7 @@ public class AdminPanel extends AppCompatActivity {
            @Override
            protected Map<String, String> getParams() throws AuthFailureError {
 
-               Map<String, String> params = new HashMap<String, String>();
+               Map<String, String> params = new HashMap<String, String>();//Arraylıstın aga babası
                params.put("kullanici_adi", usern);
                params.put("sifre", pass);
                params.put("yetki", String.valueOf(yetki));
@@ -145,7 +145,7 @@ public class AdminPanel extends AppCompatActivity {
            }
        };
 
-       MySingleton.getmInstance(AdminPanel.this).addTorequestque(stringRequest);
+       MySingleton.getmInstance(AdminPanel.this).addTorequestque(stringRequest);//Bunu bıraz arastır
 
    }
 
