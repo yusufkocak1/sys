@@ -37,7 +37,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.myView
 
         viewHolder.kullanici_adi.setText(list.get(position).getKullanici_adi());
         viewHolder.sifre.setText(list.get(position).getSifre());
-        viewHolder.yetki.setText(list.get(position).getSifre());
+        String yetki = null;
+        switch (list.get(position).getYetki()){
+            case "0":
+                yetki="Admin";
+                break;
+            case "1":
+                yetki="Garson";
+                break;
+            case "2":
+                yetki="Mutfak Personeli";
+                break;
+            case "3":
+                yetki="Kasiyer";
+
+
+
+
+        }
+        viewHolder.yetki.setText(yetki);
     }
 
     @Override
