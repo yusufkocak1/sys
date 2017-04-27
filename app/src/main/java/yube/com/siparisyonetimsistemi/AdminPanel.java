@@ -35,7 +35,6 @@ public class AdminPanel extends AppCompatActivity {
     Button save;
     Spinner spinner;
     String insertUrl="http://10.210.22.243/kullanici_insert.php";
-    String  selectUrl="http://10.210.22.243/kullanici_select.php";
     AlertDialog.Builder builder;
     RecyclerView recyclerView;
     RecyclerView.Adapter recyclerAdapter;

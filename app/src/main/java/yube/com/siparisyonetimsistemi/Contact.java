@@ -5,7 +5,7 @@ package yube.com.siparisyonetimsistemi;
  */
 
 public class Contact {
-    private  String kullanici_adi,sifre,yetki;
+    private   String kullanici_adi,sifre,yetki;
 
     public Contact(String kullanici_adi,String sifre,String yetki) {
         this.setKullanici_adi(kullanici_adi);

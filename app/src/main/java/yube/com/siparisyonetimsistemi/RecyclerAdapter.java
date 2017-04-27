@@ -22,17 +22,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.myView
 
     @Override
     public myViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item, parent);
-        myViewHolder myViewHolder=new myViewHolder(view);
+
+       View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item, parent,false);
+       myViewHolder myViewHolder=new myViewHolder(view);
+
+
 
         return myViewHolder;
     }
 
     @Override
     public void onBindViewHolder(myViewHolder viewHolder, int position) {
+        //sorunlu kısım burası burdan sonra patlıyor
+
         viewHolder.kullanici_adi.setText(list.get(position).getKullanici_adi());
         viewHolder.sifre.setText(list.get(position).getSifre());
-        viewHolder.yetki.setText(list.get(position).getYetki());
+        viewHolder.yetki.setText(list.get(position).getSifre());
     }
 
     @Override
