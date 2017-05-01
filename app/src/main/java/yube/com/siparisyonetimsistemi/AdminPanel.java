@@ -30,7 +30,7 @@ import java.util.Map;
 public class AdminPanel extends AppCompatActivity {
 
     //Variables in this class
-    EditText username,password;
+    EditText username,password,giris,parola;
     TextView textView;
     Button save;
     Spinner spinner;
@@ -87,7 +87,28 @@ public class AdminPanel extends AppCompatActivity {
             Intent cagir = new Intent(this, LoginPage.class);
             startActivity(cagir);
         }
-
+else if(id==R.id.action_search){
+            android.app.AlertDialog.Builder builder=new android.app.AlertDialog.Builder(AdminPanel.this);
+            builder.setTitle("Kullanıcı Kayıt");
+            View mView=getLayoutInflater().inflate(R.layout.alert,null);
+             giris=(EditText)mView.findViewById(R.id.editText);
+             parola=(EditText)mView.findViewById(R.id.editText2);
+            Button login=(Button)mView.findViewById(R.id.button);
+            login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!giris.getText().toString().isEmpty()&&!parola.getText().toString().isEmpty()){
+                       setJsonBtn();
+                    }
+                    else {
+                        Toast.makeText(AdminPanel.this,"Boş olarak Geçmeyiniz",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            builder.setView(mView);
+            android.app.AlertDialog dialog= builder.create();
+            dialog.show();
+        }
         return AdminPanel.super.onOptionsItemSelected(item);
     }
 
@@ -98,8 +119,8 @@ public class AdminPanel extends AppCompatActivity {
        final String pass;
        final int yetki;
 
-       usern = username.getText().toString();
-       pass = password.getText().toString();
+       usern = giris.getText().toString();
+       pass = parola.getText().toString();
 
        yetki =spinner.getSelectedItemPosition();
        StringRequest stringRequest = new StringRequest(Request.Method.POST, insertUrl,/*php sayfasına ulasmak ıcın yazıyoruz*/
