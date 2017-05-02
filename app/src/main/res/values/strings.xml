@@ -6,7 +6,7 @@
     <string name="action_search">Search</string>
     <string name="action_back">Back</string>
     <string name="user" />
-
+    <string name="ip">10.210.22.243</string>
     <string-array name="yetki">
         <item>Admin</item>
         <item>Garson</item>

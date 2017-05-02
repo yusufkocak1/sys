@@ -5,36 +5,103 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="#e95d5d"
+    android:background="@android:color/white"
     >
 
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
-        android:layout_marginBottom="-16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-60dp">
+        tools:layout_editor_absoluteX="-78dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/holo_red_light"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Kullanıcı ekle" />
+        </LinearLayout>
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/userAlert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Giris"
+            android:hint="Kullanici Adi"
             android:inputType="textPersonName"
             android:textColor="#39b6bc"
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/passAlert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Parola"
             android:inputType="textPassword"
+            android:textColor="#39b6bc"
+            android:textSize="20dp" />
+        <EditText
+            android:id="@+id/nameAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Adi"
+            android:inputType="text"
+            android:textColor="#39b6bc"
+            android:textSize="20dp" />
+        <EditText
+            android:id="@+id/surnameAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Soyadi"
+            android:inputType="text"
+            android:textColor="#39b6bc"
+            android:textSize="20dp" />
+        <EditText
+            android:id="@+id/telAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Tel"
+            android:inputType="phone"
+            android:textColor="#39b6bc"
+            android:textSize="20dp" />
+        <EditText
+            android:id="@+id/adresAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Adres"
+            android:inputType="text"
+            android:textColor="#39b6bc"
+            android:textSize="20dp" />
+        <EditText
+            android:id="@+id/tckAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="TCK"
+            android:inputType="number"
+            android:textColor="#39b6bc"
+            android:textSize="20dp" />
+        <EditText
+            android:id="@+id/maasAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Maaş"
+            android:inputType="number"
             android:textColor="#39b6bc"
             android:textSize="20dp" />
 
@@ -43,16 +110,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center">
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
+
             android:foregroundGravity="center"
             android:gravity="center"
-            android:text="Button"
+            android:text="kaydet"
             android:textSize="20dp" />
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="iptal"
+            android:textSize="20dp"/>
+</LinearLayout>
+
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import yube.com.siparisyonetimsistemi.getJson.BackgroundTask;
+import yube.com.siparisyonetimsistemi.getJson.Contact;
 
 public class LoginPage extends Activity {
 
@@ -19,9 +23,8 @@ public class LoginPage extends Activity {
     //design variable
     EditText user, password;
     Button login;
-    private Activity activity;
-    String url="http://192.168.0.150/kullanici_insert.php";
-   AlertDialog.Builder builder;
+    ArrayList<Contact> kullanicilar=new ArrayList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,34 +44,34 @@ public class LoginPage extends Activity {
 
 
 
-
+        BackgroundTask task=new BackgroundTask(LoginPage.this);
+        kullanicilar=task.getArrayList();
         login.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
                 //  connect();
+                boolean temp=true;
 
-                //10.210.0.1
+for (int i=0;i<kullanicilar.size();i++){
 
 
 
-                if (user.getText().toString().equals("yusuf") && password.getText().toString().equals("yusuf326")) {
-
+                if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre())&&kullanicilar.get(i).getYetki().toString().equals("1")) {
+                    temp=false;
                     Intent cagir = new Intent("yube.com.siparisyonetimsistemi.TABLE");
                     startActivity(cagir);
-                } else if (user.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
+                } else if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre())&&kullanicilar.get(i).getYetki().toString().equals("0")) {
+                    temp=false;
                     Intent adminCagir = new Intent("yube.com.siparisyonetimsistemi.ADMINPANEL");
                     startActivity(adminCagir);
-                } else if (user.getText().toString().equals("Bx3fn") && password.getText().toString().equals("0325")) {
-                    Intent adminCagir = new Intent(LoginPage.this, AdminPanel.class);
-                    startActivity(adminCagir);
-                } else {
+
+                }
+}if(temp) {
                     ViewDialogL alert = new ViewDialogL();
                     alert.showDialog(LoginPage.this, "Şifre yanlış");
-                }
-
-            }
+                }     }
         });
 
 

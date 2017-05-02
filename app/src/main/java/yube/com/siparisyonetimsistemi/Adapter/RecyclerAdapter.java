@@ -1,4 +1,4 @@
-package yube.com.siparisyonetimsistemi;
+package yube.com.siparisyonetimsistemi.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import yube.com.siparisyonetimsistemi.getJson.Contact;
+import yube.com.siparisyonetimsistemi.R;
 
 /**
  * Created by yusuf on 26.04.2017.

@@ -1,4 +1,4 @@
-package yube.com.siparisyonetimsistemi;
+package yube.com.siparisyonetimsistemi.getJson;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -14,6 +14,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import yube.com.siparisyonetimsistemi.MySingleton;
+
 /**
  * Created by yusuf on 26.04.2017.
  */
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 public class BackgroundTask {
     Context context;
     ArrayList<Contact> arrayList=new ArrayList<>();
-    String  selectUrl="http://10.210.10.209/kullanici_select.php";
+    String  selectUrl="http://10.210.22.243/kullanici_select.php";
 
     public BackgroundTask(Context context) {
         this.context = context;

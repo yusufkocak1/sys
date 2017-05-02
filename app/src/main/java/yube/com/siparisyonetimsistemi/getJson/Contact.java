@@ -1,4 +1,4 @@
-package yube.com.siparisyonetimsistemi;
+package yube.com.siparisyonetimsistemi.getJson;
 
 /**
  * Created by yusuf on 26.04.2017.
