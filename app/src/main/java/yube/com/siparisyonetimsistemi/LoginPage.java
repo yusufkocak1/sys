@@ -56,27 +56,34 @@ public class LoginPage extends Activity {
                 editor.putString("user", user.getText().toString());
 
                 editor.commit();
+                if (kullanicilar.size() > 0) {
+                    for (int i = 0; i < kullanicilar.size(); i++) {
 
-                for (int i = 0; i < kullanicilar.size(); i++) {
 
+                        if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("1")) {
+                            temp = false;
+                            Intent cagir = new Intent("yube.com.siparisyonetimsistemi.TABLE");
+                            startActivity(cagir);
+                        } else if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("0")) {
+                            temp = false;
+                            Intent adminCagir = new Intent("yube.com.siparisyonetimsistemi.ADMINPANEL");
+                            startActivity(adminCagir);
 
-                    if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("1")) {
-                        temp = false;
-                        Intent cagir = new Intent("yube.com.siparisyonetimsistemi.TABLE");
-                        startActivity(cagir);
-                    } else if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("0")) {
-                        temp = false;
-                        Intent adminCagir = new Intent("yube.com.siparisyonetimsistemi.ADMINPANEL");
-                        startActivity(adminCagir);
-
+                        }
+                    }
+                    if (temp) {
+                        ViewDialogL alert = new ViewDialogL();
+                        alert.showDialog(LoginPage.this, "Şifre yanlış");
                     }
                 }
-                if (temp) {
+                else{
                     ViewDialogL alert = new ViewDialogL();
-                    alert.showDialog(LoginPage.this, "Şifre yanlış");
+                    alert.showDialog(LoginPage.this, "veritabanı bağlantısı başarısız");
                 }
+
             }
         });
+
 
 
     }
