@@ -18,9 +18,9 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-import yube.com.siparisyonetimsistemi.Adapter.RecyclerAdapter;
-import yube.com.siparisyonetimsistemi.getJson.BackgroundTask;
-import yube.com.siparisyonetimsistemi.getJson.Contact;
+import yube.com.siparisyonetimsistemi.Adapter.userRecyclerAdapter;
+import yube.com.siparisyonetimsistemi.getJson.KullaniciTask;
+import yube.com.siparisyonetimsistemi.getJson.kullaniciContact;
 import yube.com.siparisyonetimsistemi.setJson.personnelSaveTask;
 import yube.com.siparisyonetimsistemi.setJson.userSaveTask;
 
@@ -32,7 +32,7 @@ public class AdminPanel extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter recyclerAdapter;
     RecyclerView.LayoutManager layoutManager;
-    ArrayList<Contact> arrayList = new ArrayList<>();//Cekilen kullanıcı verılerı arraylıste eklenıyor.bu degıskenı onun ıcın kullanacagım.
+    ArrayList<kullaniciContact> arrayList = new ArrayList<>();//Cekilen kullanıcı verılerı arraylıste eklenıyor.bu degıskenı onun ıcın kullanacagım.
 
 
     @Override
@@ -87,9 +87,9 @@ public class AdminPanel extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        BackgroundTask backgroundTask = new BackgroundTask(AdminPanel.this);
-        arrayList = backgroundTask.getArrayList();
-        recyclerAdapter = new RecyclerAdapter(arrayList);
+        KullaniciTask kullaniciTask = new KullaniciTask(AdminPanel.this);
+        arrayList = kullaniciTask.getArrayList();
+        recyclerAdapter = new userRecyclerAdapter(arrayList);
         recyclerView.setAdapter(recyclerAdapter);
 
 
@@ -115,7 +115,7 @@ class dialogusersave {
         spinner.setAdapter(adapter);
         final userSaveTask userSaveTask = new userSaveTask(activity);
         final personnelSaveTask personnelSaveTask = new personnelSaveTask(activity);
-        Button save = (Button) dialog.findViewById(R.id.button);
+        Button save = (Button) dialog.findViewById(R.id.save);
         Button cancel = (Button) dialog.findViewById(R.id.cancel);
         final EditText ad=(EditText) dialog.findViewById(R.id.nameAlert);
         final EditText soyad=(EditText) dialog.findViewById(R.id.surnameAlert);
@@ -129,7 +129,8 @@ class dialogusersave {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userSaveTask.setJsonBtn(username.getText().toString(), password.getText().toString(), spinner.getSelectedItemPosition());
+                userSaveTask.setJsonBtn(username.getText().toString(), password.getText().toString(), spinner.getSelectedItemPosition()
+                        );
                 personnelSaveTask.setJsonBtn(ad.getText().toString(),soyad.getText().toString(),tel.getText().toString(),
                 adres.getText().toString(),tck_no.getText().toString(),maas.getText().toString()
                 );

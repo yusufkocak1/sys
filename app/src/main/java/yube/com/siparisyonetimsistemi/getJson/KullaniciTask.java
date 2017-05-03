@@ -20,16 +20,16 @@ import yube.com.siparisyonetimsistemi.MySingleton;
  * Created by yusuf on 26.04.2017.
  */
 
-public class BackgroundTask {
+public class KullaniciTask {
     Context context;
-    ArrayList<Contact> arrayList=new ArrayList<>();
+    ArrayList<kullaniciContact> arrayList=new ArrayList<>();
     String  selectUrl="http://10.210.22.243/kullanici_select.php";
 
-    public BackgroundTask(Context context) {
+    public KullaniciTask(Context context) {
         this.context = context;
     }
 
-    public ArrayList<Contact> getArrayList() {
+    public ArrayList<kullaniciContact> getArrayList() {
 
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.POST, selectUrl, (String)null,
                 new Response.Listener<JSONArray>() {
@@ -39,11 +39,11 @@ public class BackgroundTask {
                         while (count<response.length()){
                             try {
                                 JSONObject jsonObject=response.getJSONObject(count);
-                                Contact contact=new Contact(
+                                kullaniciContact kullaniciContact =new kullaniciContact(
                                         jsonObject.getString("kullanici_adi"),
                                         jsonObject.getString("sifre"),
                                         jsonObject.getString("yetki"));
-                                arrayList.add(contact);
+                                arrayList.add(kullaniciContact);
                                 count++;
 
 

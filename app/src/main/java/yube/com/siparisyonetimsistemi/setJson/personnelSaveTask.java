@@ -31,7 +31,7 @@ public class personnelSaveTask {
         ip = context.getString(R.string.ip);
     }
 
-    String insertUrl = "http://" + ip + "/personel.php";
+    String insertUrl = "http://10.210.22.243/personel.php";
 
     public void setJsonBtn(final String ad, final String soyad, final String telefon,
                            final String adres, final String tck_no, final String maas

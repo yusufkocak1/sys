@@ -3,6 +3,7 @@ package yube.com.siparisyonetimsistemi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,8 +13,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import yube.com.siparisyonetimsistemi.getJson.BackgroundTask;
-import yube.com.siparisyonetimsistemi.getJson.Contact;
+import yube.com.siparisyonetimsistemi.getJson.kullaniciContact;
+import yube.com.siparisyonetimsistemi.getJson.KullaniciTask;
 
 public class LoginPage extends Activity {
 
@@ -23,7 +24,7 @@ public class LoginPage extends Activity {
     //design variable
     EditText user, password;
     Button login;
-    ArrayList<Contact> kullanicilar=new ArrayList();
+    ArrayList<kullaniciContact> kullanicilar=new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class LoginPage extends Activity {
 
 
 
-        BackgroundTask task=new BackgroundTask(LoginPage.this);
+        KullaniciTask task=new KullaniciTask(LoginPage.this);
         kullanicilar=task.getArrayList();
         login.setOnClickListener(new View.OnClickListener() {
 
@@ -53,6 +54,10 @@ public class LoginPage extends Activity {
             public void onClick(View view) {
                 //  connect();
                 boolean temp=true;
+                SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                editor.putString("user", user.getText().toString());
+
+                editor.commit();
 
 for (int i=0;i<kullanicilar.size();i++){
 
