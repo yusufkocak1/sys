@@ -17,33 +17,35 @@ import java.util.ArrayList;
 import yube.com.siparisyonetimsistemi.MySingleton;
 
 /**
- * Created by yusuf on 26.04.2017.
+ * Created by yusuf on 3.05.2017.
  */
 
-public class KullaniciTask {
+public class urunTask {
     Context context;
-    ArrayList<kullaniciContact> arrayList=new ArrayList<>();
-    String  selectUrl="http://192.168.0.150/kullanici_select.php";
+    ArrayList<urunContact> arrayList = new ArrayList<>();
+    String selectUrl = "http://192.168.0.150/sorgu_urunler.php";
 
-    public KullaniciTask(Context context) {
+    public urunTask(Context context) {
         this.context = context;
     }
 
-    public ArrayList<kullaniciContact> getArrayList() {
+    public ArrayList<urunContact> getArrayList() {
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.POST, selectUrl, (String)null,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, selectUrl, (String) null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                    int count=0;
-                        while (count<response.length()){
+                        int count = 0;
+                        while (count < response.length()) {
                             try {
-                                JSONObject jsonObject=response.getJSONObject(count);
-                                kullaniciContact kullaniciContact =new kullaniciContact(
-                                        jsonObject.getString("kullanici_adi"),
-                                        jsonObject.getString("sifre"),
-                                        jsonObject.getString("yetki"));
-                                arrayList.add(kullaniciContact);
+                                JSONObject jsonObject = response.getJSONObject(count);
+                                urunContact urunContact = new urunContact(
+                                        jsonObject.getString("urun_adi"),
+                                        jsonObject.getString("kategori"),
+                                        jsonObject.getString("fiyat")
+
+                                );
+                                arrayList.add(urunContact);
                                 count++;
 
 
@@ -55,7 +57,7 @@ public class KullaniciTask {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context,"Error...",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error...", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
         }

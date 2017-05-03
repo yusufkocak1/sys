@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import yube.com.siparisyonetimsistemi.getJson.kullaniciContact;
 import yube.com.siparisyonetimsistemi.R;
+import yube.com.siparisyonetimsistemi.getJson.kullaniciContact;
 
 /**
  * Created by yusuf on 26.04.2017.

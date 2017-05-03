@@ -30,7 +30,7 @@ public class userSaveTask {
         this.context = context;
     }
 
-    String insertUrl = "http://10.210.22.243/kullanici_insert.php";
+    String insertUrl = "http://192.168.0.150/kullanici_insert.php";
 
     public void setJsonBtn(final String usern, final String pass, final int yetki) {
 

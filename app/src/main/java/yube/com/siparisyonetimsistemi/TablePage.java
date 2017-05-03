@@ -6,12 +6,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import yube.com.siparisyonetimsistemi.Adapter.urunRecyclerAdapter;
+import yube.com.siparisyonetimsistemi.getJson.urunContact;
+import yube.com.siparisyonetimsistemi.getJson.urunTask;
 
 public class TablePage extends AppCompatActivity implements View.OnClickListener {
     private static final String MY_PREFS_NAME ="login" ;
@@ -20,7 +28,8 @@ public class TablePage extends AppCompatActivity implements View.OnClickListener
 
 
     private dialogsiparis alert=new dialogsiparis();
-
+    urunTask urunTask = new urunTask(this);
+    ArrayList<urunContact> arrayList = urunTask.getArrayList();
 
     String username;
     @Override
@@ -55,44 +64,44 @@ public class TablePage extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()) {
             case R.id.button: {
 
-               alert.showDialog(TablePage.this, "masa no:" + 1,username);
+               alert.showDialog(TablePage.this, "masa no:" + 1,username,arrayList);
 
                 break;
             }
             case R.id.button2: {
-                alert.showDialog(TablePage.this, "masa no:"+2,username);
+                alert.showDialog(TablePage.this, "masa no:"+2,username,arrayList);
                 break;
             }
             case R.id.button3: {
-                alert.showDialog(TablePage.this, "masa no:" +3,username);
+                alert.showDialog(TablePage.this, "masa no:" +3,username,arrayList);
                 break;
             }
             case R.id.button4: {
-                alert.showDialog(TablePage.this, "masa no:" + 4,username);
+                alert.showDialog(TablePage.this, "masa no:" + 4,username,arrayList);
                 break;
             }
             case R.id.button5: {
-                alert.showDialog(TablePage.this, "masa no:" + 5,username);
+                alert.showDialog(TablePage.this, "masa no:" + 5,username,arrayList);
                 break;
             }
             case R.id.button6: {
-                alert.showDialog(TablePage.this, "masa no:" + 6,username);
+                alert.showDialog(TablePage.this, "masa no:" + 6,username,arrayList);
                 break;
             }
             case R.id.button7: {
-                alert.showDialog(TablePage.this, "masa no:" + 7,username);
+                alert.showDialog(TablePage.this, "masa no:" + 7,username,arrayList);
                 break;
             }
             case R.id.button9: {
-                alert.showDialog(TablePage.this, "masa no:" + 8,username);
+                alert.showDialog(TablePage.this, "masa no:" + 8,username,arrayList);
                 break;
             }
             case R.id.button10: {
-                alert.showDialog(TablePage.this, "masa no:" + 9,username);
+                alert.showDialog(TablePage.this, "masa no:" + 9,username,arrayList);
                 break;
             }
             case R.id.button11: {
-                alert.showDialog(TablePage.this, "masa no:" + 10,username);
+                alert.showDialog(TablePage.this, "masa no:" + 10,username,arrayList);
                 break;
             }
 
@@ -166,7 +175,7 @@ class dialogsiparis {
     Button siparis_onay;
 
 
-    public void showDialog(Activity activity,String masano,String username) {
+    public void showDialog(Activity activity,String masano,String username,ArrayList arrayList) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -174,6 +183,19 @@ class dialogsiparis {
         user=(TextView) dialog.findViewById(R.id.garsonusername);
         m_no=(TextView) dialog.findViewById(R.id.masa_no);
         siparis_onay=(Button) dialog.findViewById(R.id.siparis_onay);
+
+
+
+
+        RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.urunrecycler);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        urunRecyclerAdapter recyclerAdapter = new urunRecyclerAdapter(arrayList);
+        recyclerView.setAdapter(recyclerAdapter);
+
+
 
         user.setText(username);
         m_no.setText(masano);
@@ -186,15 +208,16 @@ class dialogsiparis {
             }
         });
 
+
+
         dialog.show();
 
-    }
-
-
-
-
 
     }
+
+
+
+}
 
 
 
