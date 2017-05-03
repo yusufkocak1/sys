@@ -19,12 +19,11 @@ import yube.com.siparisyonetimsistemi.getJson.KullaniciTask;
 public class LoginPage extends Activity {
 
 
-
     private static final String MY_PREFS_NAME = "login";
     //design variable
     EditText user, password;
     Button login;
-    ArrayList<kullaniciContact> kullanicilar=new ArrayList();
+    ArrayList<kullaniciContact> kullanicilar = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,39 +43,39 @@ public class LoginPage extends Activity {
         designElementadd();
 
 
-
-        KullaniciTask task=new KullaniciTask(LoginPage.this);
-        kullanicilar=task.getArrayList();
+        KullaniciTask task = new KullaniciTask(LoginPage.this);
+        kullanicilar = task.getArrayList();
         login.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
                 //  connect();
-                boolean temp=true;
+                boolean temp = true;
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putString("user", user.getText().toString());
 
                 editor.commit();
 
-for (int i=0;i<kullanicilar.size();i++){
+                for (int i = 0; i < kullanicilar.size(); i++) {
 
 
+                    if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("1")) {
+                        temp = false;
+                        Intent cagir = new Intent("yube.com.siparisyonetimsistemi.TABLE");
+                        startActivity(cagir);
+                    } else if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("0")) {
+                        temp = false;
+                        Intent adminCagir = new Intent("yube.com.siparisyonetimsistemi.ADMINPANEL");
+                        startActivity(adminCagir);
 
-                if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre())&&kullanicilar.get(i).getYetki().toString().equals("1")) {
-                    temp=false;
-                    Intent cagir = new Intent("yube.com.siparisyonetimsistemi.TABLE");
-                    startActivity(cagir);
-                } else if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre())&&kullanicilar.get(i).getYetki().toString().equals("0")) {
-                    temp=false;
-                    Intent adminCagir = new Intent("yube.com.siparisyonetimsistemi.ADMINPANEL");
-                    startActivity(adminCagir);
-
+                    }
                 }
-}if(temp) {
+                if (temp) {
                     ViewDialogL alert = new ViewDialogL();
                     alert.showDialog(LoginPage.this, "Şifre yanlış");
-                }     }
+                }
+            }
         });
 
 
@@ -92,11 +91,11 @@ for (int i=0;i<kullanicilar.size();i++){
     }
 
 
-
 }
+
 class ViewDialogL {
 
-    public void showDialog(Activity activity, String msg){
+    public void showDialog(Activity activity, String msg) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);

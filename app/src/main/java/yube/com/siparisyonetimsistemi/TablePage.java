@@ -157,39 +157,6 @@ public class TablePage extends AppCompatActivity implements View.OnClickListener
     }
 
 
-   /* public void showDialog(Activity activity, String msg) {
-
-
-
-        AlertDialog.Builder builder=new AlertDialog.Builder(TablePage.this);
-        builder.setCancelable(true);
-
-
-builder.setView(R.layout.table_alert_dialog);
-        final Dialog dialog =builder.create();
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-
-
-      // dialog.setContentView(R.layout.table_alert_dialog);
-
-
-        TextView user = (TextView) dialog.findViewById(R.id.garsonusername);
-        user.setText(username);
-
-        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-      });
-
-        dialog.show();
-
-    }*/
-
-
 
 }
 class dialogsiparis {
