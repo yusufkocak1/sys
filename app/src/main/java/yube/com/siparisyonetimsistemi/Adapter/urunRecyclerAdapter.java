@@ -49,20 +49,27 @@ public class urunRecyclerAdapter extends RecyclerView.Adapter<urunRecyclerAdapte
     }
 
 
-    public static class myViewHolder extends RecyclerView.ViewHolder {
+    public static class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         int c;
         TextView urun_adi, kategori, fiyat;
+        Button arti,eksi;
 
         public myViewHolder(View itemView) {
             super(itemView);
             urun_adi = (TextView) itemView.findViewById(R.id.urunismi);
             kategori = (TextView) itemView.findViewById(R.id.sifre);
             fiyat = (TextView) itemView.findViewById(R.id.yetki);
-            Button arti = (Button) itemView.findViewById(R.id.art);
-            Button eksi = (Button) itemView.findViewById(R.id.ek);
+            arti = (Button) itemView.findViewById(R.id.art);
+            eksi = (Button) itemView.findViewById(R.id.ek);
             final TextView count = (TextView) itemView.findViewById(R.id.count);
             final TextView toplam = (TextView) itemView.findViewById(R.id.toplam);
             int c;
+            itemView.setOnClickListener(this);
+            arti.setOnClickListener(this);
+            eksi.setOnClickListener(this);
+
+
+
             arti.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -80,6 +87,17 @@ public class urunRecyclerAdapter extends RecyclerView.Adapter<urunRecyclerAdapte
 
 
         }
+        @Override
+        public void onClick(View view) {
+
+            if (view.getId() == arti.getId()){
+               artir();
+            }
+            else if(view.getId()==eksi.getId())
+            {
+                eksilt();
+            }
+        }
 
         public void setc(String c) {
             this.c = Integer.parseInt(c.toString());
@@ -94,6 +112,14 @@ public class urunRecyclerAdapter extends RecyclerView.Adapter<urunRecyclerAdapte
             this.c--;
             return this.c;
         }
+
+
+
+        @Override
+        public boolean onLongClick(View view) {
+            return false;
+        }
+
 
     }//myVievHolder class
 

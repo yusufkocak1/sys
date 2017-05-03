@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="action_settings" type="id" />
+    <item name="urunismi" type="id" />
+    <item name="art" type="id" />
+    <item name="ek" type="id" />
+    <item name="count" type="id" />
+    <item name="toplam" type="id" />
 </resources>

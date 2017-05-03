@@ -78,7 +78,7 @@ public class LoginPage extends Activity {
                 }
                 else{
                     ViewDialogL alert = new ViewDialogL();
-                    alert.showDialog(LoginPage.this, "veritabanı bağlantısı başarısız");
+                    alert.showDialog(LoginPage.this, "Veritabanı bağlantısı başarısız");
                 }
 
             }
