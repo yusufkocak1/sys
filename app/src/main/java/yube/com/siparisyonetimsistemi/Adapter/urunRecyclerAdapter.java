@@ -35,11 +35,41 @@ public class urunRecyclerAdapter extends RecyclerView.Adapter<urunRecyclerAdapte
     }
 
     @Override
-    public void onBindViewHolder(myViewHolder viewHolder, int position) {
+    public void onBindViewHolder(final myViewHolder viewHolder, int position) {
 
         viewHolder.urun_adi.setText(list.get(position).getUrun_adi() + " " + list.get(position).getFiyat());
+       viewHolder.arti.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+
+               viewHolder.count.setText(artir(viewHolder.count.getText().toString()));
+           }
+       });
+        viewHolder.eksi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewHolder.count.setText(eksilt(viewHolder.count.getText().toString()));
+            }
+        });
 
 
+
+    }
+    int c;
+
+
+    public String artir(String c) {
+        int count =Integer.parseInt(c);
+        count++;
+
+        return String.valueOf(count);
+    }
+
+    public String eksilt(String c) {
+        int count =Integer.parseInt(c);
+        count--;
+
+        return String.valueOf(count);
     }
 
 
@@ -49,11 +79,12 @@ public class urunRecyclerAdapter extends RecyclerView.Adapter<urunRecyclerAdapte
     }
 
 
-    public static class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-        int c;
+    public static class myViewHolder extends RecyclerView.ViewHolder {
+
         TextView urun_adi, kategori, fiyat;
         Button arti,eksi;
-
+        TextView count = (TextView) itemView.findViewById(R.id.count);
+        TextView toplam = (TextView) itemView.findViewById(R.id.toplam);
         public myViewHolder(View itemView) {
             super(itemView);
             urun_adi = (TextView) itemView.findViewById(R.id.urunismi);
@@ -61,64 +92,22 @@ public class urunRecyclerAdapter extends RecyclerView.Adapter<urunRecyclerAdapte
             fiyat = (TextView) itemView.findViewById(R.id.yetki);
             arti = (Button) itemView.findViewById(R.id.art);
             eksi = (Button) itemView.findViewById(R.id.ek);
-            final TextView count = (TextView) itemView.findViewById(R.id.count);
-            final TextView toplam = (TextView) itemView.findViewById(R.id.toplam);
-            int c;
-            itemView.setOnClickListener(this);
-            arti.setOnClickListener(this);
-            eksi.setOnClickListener(this);
 
 
 
-            arti.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    setc(count.getText().toString());
-                    count.setText(artir());
-                }
-            });
-            eksi.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    setc(count.getText().toString());
-                    count.setText(eksilt());
-                }
-            });
+
+
+
 
 
         }
-        @Override
-        public void onClick(View view) {
-
-            if (view.getId() == arti.getId()){
-               artir();
-            }
-            else if(view.getId()==eksi.getId())
-            {
-                eksilt();
-            }
-        }
-
-        public void setc(String c) {
-            this.c = Integer.parseInt(c.toString());
-        }
-
-        public int artir() {
-            this.c++;
-            return this.c;
-        }
-
-        public int eksilt() {
-            this.c--;
-            return this.c;
-        }
 
 
 
-        @Override
-        public boolean onLongClick(View view) {
-            return false;
-        }
+
+
+
+
 
 
     }//myVievHolder class
