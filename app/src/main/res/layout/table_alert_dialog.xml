@@ -1,65 +1,56 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffffff">
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:background="@android:color/holo_red_light"
-       android:id="@+id/linearLayout2">
-
-       <TextView
-           android:id="@+id/text_dialog"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:gravity="center"
-           android:text="TEXTO"
-           android:textColor="#ff000000"
-           android:textSize="50dp" />
-
-   </LinearLayout>
-
-<ScrollView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/scrollView2"
-    android:layout_below="@+id/linearLayout2"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentEnd="true"
-    android:layout_above="@+id/btn_dialog">
-
-
-   <ListView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:id="@+id/listview">
-   </ListView>
-
-
-
-
-</ScrollView>
-    <Button
-        android:id="@+id/btn_dialog"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:orientation="vertical"
+        android:background="@android:color/holo_red_light"
+        android:id="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/masa_no"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="TEXTO"
+            android:textColor="#ff000000"
+            android:textSize="50dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="383dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/urunrecycler">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/siparis_onay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@android:color/holo_blue_dark"
-        android:gravity="center_vertical|center_horizontal"
         android:text="OK"
         android:textColor="#ffffffff"
-        android:layout_above="@+id/usern"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="21dp" />
+        />
     <TextView
-        android:id="@+id/usern"
+        android:id="@+id/garsonusername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/user" />
 
 
-</RelativeLayout>
+</LinearLayout>

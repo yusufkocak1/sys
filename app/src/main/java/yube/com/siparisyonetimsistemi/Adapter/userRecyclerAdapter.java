@@ -1,4 +1,4 @@
-package yube.com.siparisyonetimsistemi;
+package yube.com.siparisyonetimsistemi.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,22 +8,25 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import yube.com.siparisyonetimsistemi.R;
+import yube.com.siparisyonetimsistemi.getJson.kullaniciContact;
+
 /**
  * Created by yusuf on 26.04.2017.
  */
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.myViewHolder> {
+public class userRecyclerAdapter extends RecyclerView.Adapter<userRecyclerAdapter.myViewHolder> {
 
-    ArrayList <Contact> list=new ArrayList<>();
+    ArrayList <kullaniciContact> list=new ArrayList<>();
 
-    public RecyclerAdapter(ArrayList<Contact> list) {
+    public userRecyclerAdapter(ArrayList<kullaniciContact> list) {
         this.list = list;
     }
 
     @Override
     public myViewHolder onCreateViewHolder(ViewGroup parent, int i) {
 
-       View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item, parent,false);
+       View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.user_recycler_item, parent,false);
        myViewHolder myViewHolder=new myViewHolder(view);
 
 

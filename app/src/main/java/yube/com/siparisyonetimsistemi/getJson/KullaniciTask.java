@@ -1,4 +1,4 @@
-package yube.com.siparisyonetimsistemi;
+package yube.com.siparisyonetimsistemi.getJson;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -14,20 +14,22 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import yube.com.siparisyonetimsistemi.MySingleton;
+
 /**
  * Created by yusuf on 26.04.2017.
  */
 
-public class BackgroundTask {
+public class KullaniciTask {
     Context context;
-    ArrayList<Contact> arrayList=new ArrayList<>();
-    String  selectUrl="http://10.210.10.209/kullanici_select.php";
+    ArrayList<kullaniciContact> arrayList=new ArrayList<>();
+    String  selectUrl="http://192.168.0.150/kullanici_select.php";
 
-    public BackgroundTask(Context context) {
+    public KullaniciTask(Context context) {
         this.context = context;
     }
 
-    public ArrayList<Contact> getArrayList() {
+    public ArrayList<kullaniciContact> getArrayList() {
 
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.POST, selectUrl, (String)null,
                 new Response.Listener<JSONArray>() {
@@ -37,11 +39,11 @@ public class BackgroundTask {
                         while (count<response.length()){
                             try {
                                 JSONObject jsonObject=response.getJSONObject(count);
-                                Contact contact=new Contact(
+                                kullaniciContact kullaniciContact =new kullaniciContact(
                                         jsonObject.getString("kullanici_adi"),
                                         jsonObject.getString("sifre"),
                                         jsonObject.getString("yetki"));
-                                arrayList.add(contact);
+                                arrayList.add(kullaniciContact);
                                 count++;
 
 

@@ -5,31 +5,31 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import yube.com.siparisyonetimsistemi.Adapter.urunRecyclerAdapter;
+import yube.com.siparisyonetimsistemi.getJson.urunContact;
+import yube.com.siparisyonetimsistemi.getJson.urunTask;
 
 public class TablePage extends AppCompatActivity implements View.OnClickListener {
     private static final String MY_PREFS_NAME ="login" ;
     Button bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9, bt10;
 
-    ListView listemiz=null;
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
 
+    private dialogsiparis alert=new dialogsiparis();
+    urunTask urunTask = new urunTask(this);
+    ArrayList<urunContact> arrayList = urunTask.getArrayList();
 
     String username;
     @Override
@@ -40,32 +40,12 @@ public class TablePage extends AppCompatActivity implements View.OnClickListener
         //Full screen
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        String restoredText = prefs.getString("text", null);
+        username = prefs.getString("user", "No name defined");
 
-            username = prefs.getString("user", "No name defined");//"No name defined" is the default value.
-        String[] ulkeler =
-                {"Türkiye", "Almanya", "Avusturya", "Amerika","İngiltere",
-                        "Macaristan", "Yunanistan", "Rusya", "Suriye", "İran", "Irak",
-                        "Şili", "Brezilya", "Japonya", "Portekiz", "İspanya",
-                        "Makedonya", "Ukrayna", "İsviçre"};
-        //(A) adımı
-        listemiz=new ListView(this);
 
-        //(B) adımı
-        ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>
-                (this, android.R.layout.simple_list_item_1, android.R.id.text1, ulkeler);
 
-        //(C) adımı
-        listemiz.setAdapter(veriAdaptoru);
 
-        listemiz.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ViewGroup vg=(ViewGroup) view;
-                TextView txt=(TextView) findViewById(R.id.txtitem);
-                Toast.makeText(TablePage.this,txt.getText().toString(),Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
 
 
@@ -84,44 +64,44 @@ public class TablePage extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()) {
             case R.id.button: {
 
-                showDialog(TablePage.this, "masa no:" + 1);
+               alert.showDialog(TablePage.this, "masa no:" + 1,username,arrayList);
 
                 break;
             }
             case R.id.button2: {
-                showDialog(TablePage.this, "masa no:2");
+                alert.showDialog(TablePage.this, "masa no:"+2,username,arrayList);
                 break;
             }
             case R.id.button3: {
-                showDialog(TablePage.this, "" + R.id.button3);
+                alert.showDialog(TablePage.this, "masa no:" +3,username,arrayList);
                 break;
             }
             case R.id.button4: {
-                showDialog(TablePage.this, "" + R.id.button4);
+                alert.showDialog(TablePage.this, "masa no:" + 4,username,arrayList);
                 break;
             }
             case R.id.button5: {
-
+                alert.showDialog(TablePage.this, "masa no:" + 5,username,arrayList);
                 break;
             }
             case R.id.button6: {
-
+                alert.showDialog(TablePage.this, "masa no:" + 6,username,arrayList);
                 break;
             }
             case R.id.button7: {
-
+                alert.showDialog(TablePage.this, "masa no:" + 7,username,arrayList);
                 break;
             }
             case R.id.button9: {
-
+                alert.showDialog(TablePage.this, "masa no:" + 8,username,arrayList);
                 break;
             }
             case R.id.button10: {
-
+                alert.showDialog(TablePage.this, "masa no:" + 9,username,arrayList);
                 break;
             }
             case R.id.button11: {
-
+                alert.showDialog(TablePage.this, "masa no:" + 10,username,arrayList);
                 break;
             }
 
@@ -186,39 +166,58 @@ public class TablePage extends AppCompatActivity implements View.OnClickListener
     }
 
 
-    public void showDialog(Activity activity, String msg) {
+
+}
+class dialogsiparis {
 
 
+    TextView m_no,user;
+    Button siparis_onay;
 
-        AlertDialog.Builder builder=new AlertDialog.Builder(TablePage.this);
-        builder.setCancelable(true);
 
-        ListView liste=(ListView) findViewById(R.id.listview);
-        liste=listemiz;
-builder.setView(R.layout.table_alert_dialog);
-        final Dialog dialog =builder.create();
+    public void showDialog(Activity activity,String masano,String username,ArrayList arrayList) {
+        final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.table_alert_dialog);
+        user=(TextView) dialog.findViewById(R.id.garsonusername);
+        m_no=(TextView) dialog.findViewById(R.id.masa_no);
+        siparis_onay=(Button) dialog.findViewById(R.id.siparis_onay);
 
 
 
-      // dialog.setContentView(R.layout.table_alert_dialog);
 
-        TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
-        TextView user = (TextView) dialog.findViewById(R.id.usern);
+        RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.urunrecycler);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        urunRecyclerAdapter recyclerAdapter = new urunRecyclerAdapter(arrayList);
+        recyclerView.setAdapter(recyclerAdapter);
+
+
+
         user.setText(username);
-        text.setText(msg);
-        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
-        dialogButton.setOnClickListener(new View.OnClickListener() {
+        m_no.setText(masano);
+
+
+        siparis_onay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 dialog.dismiss();
             }
-      });
+        });
+
+
 
         dialog.show();
+
 
     }
 
 
 
 }
+
+
+

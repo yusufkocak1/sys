@@ -3,25 +3,28 @@ package yube.com.siparisyonetimsistemi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class LoginPage extends Activity {
+import java.util.ArrayList;
 
+import yube.com.siparisyonetimsistemi.getJson.kullaniciContact;
+import yube.com.siparisyonetimsistemi.getJson.KullaniciTask;
+
+public class LoginPage extends Activity {
 
 
     private static final String MY_PREFS_NAME = "login";
     //design variable
     EditText user, password;
     Button login;
-    private Activity activity;
-    String url="http://192.168.0.150/kullanici_insert.php";
-   AlertDialog.Builder builder;
+    ArrayList<kullaniciContact> kullanicilar = new ArrayList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,36 +43,47 @@ public class LoginPage extends Activity {
         designElementadd();
 
 
-
-
+        KullaniciTask task = new KullaniciTask(LoginPage.this);
+        kullanicilar = task.getArrayList();
         login.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
                 //  connect();
+                boolean temp = true;
+                SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                editor.putString("user", user.getText().toString());
 
-                //10.210.0.1
+                editor.commit();
+                if (kullanicilar.size() > 0) {
+                    for (int i = 0; i < kullanicilar.size(); i++) {
 
 
+                        if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("1")) {
+                            temp = false;
+                            Intent cagir = new Intent("yube.com.siparisyonetimsistemi.TABLE");
+                            startActivity(cagir);
+                        } else if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("0")) {
+                            temp = false;
+                            Intent adminCagir = new Intent("yube.com.siparisyonetimsistemi.ADMINPANEL");
+                            startActivity(adminCagir);
 
-                if (user.getText().toString().equals("yusuf") && password.getText().toString().equals("yusuf326")) {
-
-                    Intent cagir = new Intent("yube.com.siparisyonetimsistemi.TABLE");
-                    startActivity(cagir);
-                } else if (user.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
-                    Intent adminCagir = new Intent("yube.com.siparisyonetimsistemi.ADMINPANEL");
-                    startActivity(adminCagir);
-                } else if (user.getText().toString().equals("Bx3fn") && password.getText().toString().equals("0325")) {
-                    Intent adminCagir = new Intent(LoginPage.this, AdminPanel.class);
-                    startActivity(adminCagir);
-                } else {
+                        }
+                    }
+                    if (temp) {
+                        ViewDialogL alert = new ViewDialogL();
+                        alert.showDialog(LoginPage.this, "Şifre yanlış");
+                    }
+                }
+                else{
                     ViewDialogL alert = new ViewDialogL();
-                    alert.showDialog(LoginPage.this, "Şifre yanlış");
+                    alert.showDialog(LoginPage.this, "Veritabanı bağlantısı başarısız");
                 }
 
             }
         });
+
 
 
     }
@@ -84,11 +98,11 @@ public class LoginPage extends Activity {
     }
 
 
-
 }
+
 class ViewDialogL {
 
-    public void showDialog(Activity activity, String msg){
+    public void showDialog(Activity activity, String msg) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
