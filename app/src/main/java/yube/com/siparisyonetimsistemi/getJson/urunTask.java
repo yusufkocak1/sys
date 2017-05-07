@@ -42,7 +42,8 @@ public class urunTask {
                                 urunContact urunContact = new urunContact(
                                         jsonObject.getString("urun_adi"),
                                         jsonObject.getString("kategori"),
-                                        jsonObject.getString("fiyat")
+                                        jsonObject.getString("fiyat"),
+                                        jsonObject.getString("id")
 
                                 );
                                 arrayList.add(urunContact);

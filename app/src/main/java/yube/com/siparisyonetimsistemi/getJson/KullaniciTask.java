@@ -40,6 +40,7 @@ public class KullaniciTask {
                             try {
                                 JSONObject jsonObject=response.getJSONObject(count);
                                 kullaniciContact kullaniciContact =new kullaniciContact(
+                                        jsonObject.getString("id"),
                                         jsonObject.getString("kullanici_adi"),
                                         jsonObject.getString("sifre"),
                                         jsonObject.getString("yetki"));

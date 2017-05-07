@@ -53,7 +53,7 @@ public class LoginPage extends Activity {
                 //  connect();
                 boolean temp = true;
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                editor.putString("user", user.getText().toString());
+
 
                 editor.commit();
                 if (kullanicilar.size() > 0) {
@@ -62,6 +62,8 @@ public class LoginPage extends Activity {
 
                         if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("1")) {
                             temp = false;
+                            editor.putString("user", kullanicilar.get(i).getKullanici_adi());
+                            editor.putString("id",kullanicilar.get(i).getId());
                             Intent cagir = new Intent("yube.com.siparisyonetimsistemi.TABLE");
                             startActivity(cagir);
                         } else if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("0")) {

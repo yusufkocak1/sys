@@ -5,12 +5,21 @@ package yube.com.siparisyonetimsistemi.getJson;
  */
 
 public class kullaniciContact {
-    private   String kullanici_adi,sifre,yetki;
+    private   String id, kullanici_adi,sifre,yetki;
 
-    public kullaniciContact(String kullanici_adi, String sifre, String yetki) {
+    public kullaniciContact(String id,String kullanici_adi, String sifre, String yetki) {
+        this.setId(id);
         this.setKullanici_adi(kullanici_adi);
         this.setSifre(sifre);
         this.setYetki(yetki);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSifre() {

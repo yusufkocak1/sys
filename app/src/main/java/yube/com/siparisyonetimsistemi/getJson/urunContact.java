@@ -5,13 +5,22 @@ package yube.com.siparisyonetimsistemi.getJson;
  */
 
 public class urunContact {
-    private String urun_adi, kategori, fiyat;
+    private String urun_adi, kategori, fiyat,id;
 
-    public urunContact(String urun_adi, String kategori, String fiyat) {
+    public urunContact(String urun_adi, String kategori, String fiyat,String id) {
+        this.setId(id);
         this.setUrun_adi(urun_adi);
         this.setFiyat(fiyat);
         this.setKategori(kategori);
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getKategori() {
