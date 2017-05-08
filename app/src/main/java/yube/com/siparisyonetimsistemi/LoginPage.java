@@ -63,7 +63,7 @@ public class LoginPage extends Activity {
                         if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("1")) {
                             temp = false;
                             editor.putString("user", kullanicilar.get(i).getKullanici_adi());
-                            editor.putString("id",kullanicilar.get(i).getId());
+                            editor.putString("id",kullanicilar.get(i).getid());
                             Intent cagir = new Intent("yube.com.siparisyonetimsistemi.TABLE");
                             startActivity(cagir);
                         } else if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("0")) {

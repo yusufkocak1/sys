@@ -45,7 +45,7 @@ public class TablePage extends AppCompatActivity implements View.OnClickListener
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         username = prefs.getString("user", "No name defined");
-        id=prefs.getString("id","No id defined");
+        id=prefs.getString("id","2");
 
 
 
@@ -68,44 +68,44 @@ public class TablePage extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()) {
             case R.id.button: {
 
-               alert.showDialog(TablePage.this, "masa no:" + 1,id,username,arrayList);
+               alert.showDialog(TablePage.this,  1,id,username,arrayList);
 
                 break;
             }
             case R.id.button2: {
-                alert.showDialog(TablePage.this, "masa no:"+2,id,username,arrayList);
+                alert.showDialog(TablePage.this, 2,id,username,arrayList);
                 break;
             }
             case R.id.button3: {
-                alert.showDialog(TablePage.this, "masa no:" +3,id,username,arrayList);
+                alert.showDialog(TablePage.this, 3,id,username,arrayList);
                 break;
             }
             case R.id.button4: {
-                alert.showDialog(TablePage.this, "masa no:" + 4,id,username,arrayList);
+                alert.showDialog(TablePage.this, 4,id,username,arrayList);
                 break;
             }
             case R.id.button5: {
-                alert.showDialog(TablePage.this, "masa no:" + 5,id,username,arrayList);
+                alert.showDialog(TablePage.this, 5,id,username,arrayList);
                 break;
             }
             case R.id.button6: {
-                alert.showDialog(TablePage.this, "masa no:" + 6,id,username,arrayList);
+                alert.showDialog(TablePage.this, 6,id,username,arrayList);
                 break;
             }
             case R.id.button7: {
-                alert.showDialog(TablePage.this, "masa no:" + 7,id,username,arrayList);
+                alert.showDialog(TablePage.this, 7,id,username,arrayList);
                 break;
             }
             case R.id.button9: {
-                alert.showDialog(TablePage.this, "masa no:" + 8,id,username,arrayList);
+                alert.showDialog(TablePage.this, 8,id,username,arrayList);
                 break;
             }
             case R.id.button10: {
-                alert.showDialog(TablePage.this, "masa no:" + 9,id,username,arrayList);
+                alert.showDialog(TablePage.this, 9,id,username,arrayList);
                 break;
             }
             case R.id.button11: {
-                alert.showDialog(TablePage.this, "masa no:" + 10,id,username,arrayList);
+                alert.showDialog(TablePage.this, 10,id,username,arrayList);
                 break;
             }
 
@@ -179,7 +179,7 @@ class dialogsiparis {
     Button siparis_onay;
 
 
-    public void showDialog(final Activity activity, String masano, final String id, String username, final ArrayList arrayList) {
+    public void showDialog(final Activity activity, final int masano, final String id, String username, final ArrayList arrayList) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -196,13 +196,13 @@ class dialogsiparis {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        urunRecyclerAdapter recyclerAdapter = new urunRecyclerAdapter(arrayList);
+        final urunRecyclerAdapter recyclerAdapter = new urunRecyclerAdapter(arrayList);
         recyclerView.setAdapter(recyclerAdapter);
-        final ArrayList <siparisContact> siparis=new ArrayList<>();
+        final ArrayList<siparisContact> siparis = new ArrayList<>();
         final siparisTask sipariAl=new siparisTask(activity);
 
-        user.setText(username);
-        m_no.setText(masano);
+        user.setText(username+id);
+        m_no.setText("masa no:"+masano);
         Date d = new Date();
         final CharSequence s  = DateFormat.format("EEEE, MMMM d, yyyy ", d.getTime());
 
@@ -212,9 +212,17 @@ class dialogsiparis {
             public void onClick(View view) {
 
 
-                for (int i=0;i<siparis.size();i++)
+                for (int i = 0; i< recyclerAdapter.siparislist.size(); i++)
                       {
-                    sipariAl.setJsonBtn(id,siparis.get(i).getUrun_id(),s.toString(),siparis.get(i).getAdet(),siparis.get(i).getFiyat(),"0","non");
+                    sipariAl.setJsonBtn(id,
+                            recyclerAdapter.siparislist.get(i).getUrun_id(),
+                            s.toString(),
+                            recyclerAdapter.siparislist.get(i).getAdet(),
+                            recyclerAdapter.siparislist.get(i).getFiyat(),
+                            "1",
+                            "non",
+                            String.valueOf(masano)
+                    );
 
                 }
                 dialog.dismiss();

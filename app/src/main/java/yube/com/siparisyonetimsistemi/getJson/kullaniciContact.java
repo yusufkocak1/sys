@@ -14,7 +14,7 @@ public class kullaniciContact {
         this.setYetki(yetki);
     }
 
-    public String getId() {
+    public String getid() {
         return id;
     }
 

@@ -32,7 +32,16 @@ public class siparisTask {
 
     String insertUrl = "http://192.168.0.150/siparis.php";
 
-    public void setJsonBtn(final String personel_id, final String urun_id, final String siparis_zamani, final String miktar, final String fiyat, final String durum, final String aciklama) {
+    public void setJsonBtn(final String personel_id,
+                           final String urun_id,
+                           final String siparis_zamani,
+                           final String miktar,
+                           final String fiyat,
+                           final String durum,
+                           final String aciklama,
+                           final String masa_id
+    ) {
+
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, insertUrl,/*php sayfasına ulasmak ıcın yazıyoruz*/
@@ -67,13 +76,14 @@ public class siparisTask {
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> params = new HashMap<String, String>();//Arraylıstın aga babası
-                params.put("Personel_id", personel_id);
+                params.put("personel_id", personel_id);
                 params.put("urun_id",urun_id);
                 params.put("siparis zamani", siparis_zamani);
                 params.put("fiyat",fiyat);
                 params.put("miktar", miktar);
                 params.put("durum",durum);
                 params.put("aciklama",aciklama);
+                params.put("masa_id",masa_id);
 
 
                 return params;
