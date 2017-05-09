@@ -46,18 +46,6 @@ public class TablePage extends AppCompatActivity implements View.OnClickListener
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         username = prefs.getString("user", "No name defined");
         id=prefs.getString("id","2");
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
@@ -204,9 +192,13 @@ class dialogsiparis {
         user.setText(username+id);
         m_no.setText("masa no:"+masano);
         Date d = new Date();
-        final CharSequence s  = DateFormat.format("EEEE, MMMM d, yyyy ", d.getTime());
+        String s;
+        s = String.valueOf(String.format(d.getHours() + ":" + d.getMinutes()));
+
+        s=s+DateFormat.format(" ,EEEE, d MMMM, yyyy ",d.getTime());
 
 
+        final String finalS = s;
         siparis_onay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -216,10 +208,10 @@ class dialogsiparis {
                       {
                     sipariAl.setJsonBtn(id,
                             recyclerAdapter.siparislist.get(i).getUrun_id(),
-                            s.toString(),
+                            finalS,
                             recyclerAdapter.siparislist.get(i).getAdet(),
                             recyclerAdapter.siparislist.get(i).getFiyat(),
-                            "1",
+                            "0",
                             "non",
                             String.valueOf(masano)
                     );

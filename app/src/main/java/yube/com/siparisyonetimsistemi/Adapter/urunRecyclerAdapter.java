@@ -19,9 +19,9 @@ import yube.com.siparisyonetimsistemi.getJson.urunContact;
  */
 
 public class urunRecyclerAdapter extends RecyclerView.Adapter<urunRecyclerAdapter.myViewHolder> {
-    int id=1;
+    int id=0;
     ArrayList<urunContact> list = new ArrayList<>();
-    ArrayList<siparisContact> siparislist= new ArrayList<>();
+   public ArrayList<siparisContact> siparislist= new ArrayList<>();
     public urunRecyclerAdapter(ArrayList<urunContact> list) {
         this.list = list;
     }
@@ -39,6 +39,38 @@ public class urunRecyclerAdapter extends RecyclerView.Adapter<urunRecyclerAdapte
     public void onBindViewHolder(final myViewHolder viewHolder, final int position) {
 
         viewHolder.urun_adi.setText(list.get(position).getUrun_adi() + " " + list.get(position).getFiyat());
+
+        viewHolder.selectUrun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(viewHolder.selectUrun.isChecked()){
+                    if(Integer.parseInt(viewHolder.count.getText().toString())>0) {
+                        siparisContact siparisContact = new siparisContact(
+                                viewHolder.urun_adi.getText().toString(),
+                                viewHolder.toplam.getText().toString(),
+                                viewHolder.count.getText().toString(),
+                                list.get(position).getId()
+
+                        );
+
+                        siparislist.add(siparisContact);
+                    }
+
+                }
+                if(!viewHolder.selectUrun.isChecked()){
+
+                  for (int i=0;i<siparislist.size();i++){
+                      if (siparislist.get(i).getUrun_adi()==viewHolder.urun_adi.getText()){
+                          siparislist.remove(i);
+
+
+                      }
+                  }
+
+                }
+
+            }
+        });
        viewHolder.arti.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -58,16 +90,9 @@ public class urunRecyclerAdapter extends RecyclerView.Adapter<urunRecyclerAdapte
         });
 
 
-       if(viewHolder.selectUrun.isChecked()){
-          siparislist.get(id).setUrun_adi(viewHolder.urun_adi.getText().toString());
-          siparislist.get(id).setAdet(viewHolder.count.getText().toString());
-          siparislist.get(id).setFiyat(viewHolder.fiyat.toString());
-           siparislist.get(id).setUrun_id(list.get(position).getId());
-           id++;
-       }
-       if(!viewHolder.selectUrun.isChecked()){
 
-       }
+
+
 
     }
 

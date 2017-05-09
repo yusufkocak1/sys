@@ -35,6 +35,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".SiparisTakip" />
+        <activity android:name=".SiparisPanel">
+
+            <intent-filter>
+                <action android:name="yube.com.siparisyonetimsistemi.SIPARIS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

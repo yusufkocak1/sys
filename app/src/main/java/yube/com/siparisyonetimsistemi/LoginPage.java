@@ -72,6 +72,11 @@ public class LoginPage extends Activity {
                             startActivity(adminCagir);
 
                         }
+                        else if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("2")) {
+                            temp = false;
+                            startActivity(adminCagir);
+
+                        }
                     }
                     if (temp) {
                         ViewDialogL alert = new ViewDialogL();

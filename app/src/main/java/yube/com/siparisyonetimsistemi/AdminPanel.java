@@ -87,11 +87,18 @@ public class AdminPanel extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        KullaniciTask kullaniciTask = new KullaniciTask(AdminPanel.this);
+        final KullaniciTask kullaniciTask = new KullaniciTask(AdminPanel.this);
+        Thread thread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+
         arrayList = kullaniciTask.getArrayList();
         recyclerAdapter = new userRecyclerAdapter(arrayList);
         recyclerView.setAdapter(recyclerAdapter);
 
+            }
+        });
+        thread.start();
 
     }
 }
