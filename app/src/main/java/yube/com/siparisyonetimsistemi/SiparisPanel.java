@@ -17,6 +17,8 @@ import yube.com.siparisyonetimsistemi.Adapter.siparisRecyclerAdapter;
 import yube.com.siparisyonetimsistemi.getJson.siparisTask;
 import yube.com.siparisyonetimsistemi.getJson.siparisgosterContact;
 
+import static java.lang.Thread.sleep;
+
 public class SiparisPanel extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -34,10 +36,29 @@ public class SiparisPanel extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         siparisTask siparisTask = new siparisTask(SiparisPanel.this);
         arrayList = siparisTask.getArrayList();
+        try {
+            sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         recyclerAdapter = new siparisRecyclerAdapter(arrayList,SiparisPanel.this);
         recyclerView.setAdapter(recyclerAdapter);
 
+ Thread thread=new Thread(new Runnable() {
+     @Override
+     public void run() {
+         try {
+             sleep(5000);
+         } catch (InterruptedException e) {
+             e.printStackTrace();
+         }
+         finish();
+         startActivity(getIntent());
 
+     }
+ });
+
+        thread.start();
     }
 
     @Override
