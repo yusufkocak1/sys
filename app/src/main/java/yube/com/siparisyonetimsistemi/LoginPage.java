@@ -74,6 +74,7 @@ public class LoginPage extends Activity {
                         }
                         else if (user.getText().toString().equals(kullanicilar.get(i).getKullanici_adi()) && password.getText().toString().equals(kullanicilar.get(i).getSifre()) && kullanicilar.get(i).getYetki().toString().equals("2")) {
                             temp = false;
+                            Intent adminCagir = new Intent("yube.com.siparisyonetimsistemi.SIPARIS");
                             startActivity(adminCagir);
 
                         }
