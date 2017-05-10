@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import yube.com.siparisyonetimsistemi.R;
 import yube.com.siparisyonetimsistemi.getJson.siparisgosterContact;
+import yube.com.siparisyonetimsistemi.setJson.updatedurumTask;
 
 /**
  * Created by yusuf on 3.05.2017.
@@ -24,6 +26,7 @@ public class siparisRecyclerAdapter extends RecyclerView.Adapter<siparisRecycler
     ArrayList<siparisgosterContact> list = new ArrayList<>();
     Activity activity;
  private String urunadi;
+    boolean running=false;
 
     public siparisRecyclerAdapter(ArrayList<siparisgosterContact> list, Activity activity) {
 
@@ -46,13 +49,28 @@ public class siparisRecyclerAdapter extends RecyclerView.Adapter<siparisRecycler
         viewHolder.urun_adi.setText(list.get(position).getUrun_adi());
         viewHolder.fiyat.setText(list.get(position).getFiyat());
         viewHolder.masano.setText(list.get(position).getMasa_id());
-        viewHolder.urun_adi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewAlert dialog=new viewAlert();
-                dialog.showDialog(activity);
-            }
-        });
+
+
+
+
+
+
+
+
+                viewHolder.urun_adi.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        running=true;
+                        viewAlert dialog=new viewAlert();
+                        dialog.showDialog(activity,list,position);
+
+                        running=false;
+                    }
+                });
+
+        running=true;
+
+
         switch (list.get(position).getDurum()) {
             case "0":
                 viewHolder.itemView.setBackgroundColor(Color.rgb(211, 47, 47));
@@ -98,12 +116,39 @@ urunadi=viewHolder.urun_adi.getText().toString();
 
     class viewAlert {
 
-        public void showDialog(Activity activity) {
+TextView masaid,personelid,urunid,urunadi,miktar,fiyat,sipariszamani;
+        Button onayla;
+
+        public void showDialog(Activity activity, final ArrayList<siparisgosterContact> list, final int position) {
             final Dialog dialog = new Dialog(activity);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setCancelable(true);
             dialog.setContentView(R.layout.siparis_panel_alert);
-dialog.show();
+            masaid=(TextView)dialog.findViewById(R.id.masaid);
+            personelid=(TextView)dialog.findViewById(R.id.personelid);
+            urunid=(TextView)dialog.findViewById(R.id.urunid);
+            urunadi=(TextView)dialog.findViewById(R.id.urunadi);
+            miktar=(TextView)dialog.findViewById(R.id.urunmiktar);
+            fiyat=(TextView)dialog.findViewById(R.id.toplamfiyat);
+            sipariszamani=(TextView)dialog.findViewById(R.id.siparizamani);
+            onayla=(Button)dialog.findViewById(R.id.btnonay);
+            final updatedurumTask updatedurum=new updatedurumTask(activity);
+            masaid.setText(masaid.getText().toString()+list.get(position).getMasa_id());
+            personelid.setText(personelid.getText().toString()+list.get(position).getPersonel_id());
+            urunid.setText(urunid.getText().toString()+list.get(position).getUrun_id());
+            urunadi.setText(urunadi.getText().toString()+list.get(position).getUrun_adi());
+            miktar.setText(miktar.getText().toString()+list.get(position).getAdet());
+            fiyat.setText(fiyat.getText().toString()+list.get(position).getFiyat());
+            sipariszamani.setText(sipariszamani.getText().toString()+list.get(position).getSiparis_zamani());
+            onayla.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    updatedurum.setJsonBtn(list.get(position).getSiparis_id(),"1");
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
 
         }
     }//RecyclerAdpter class

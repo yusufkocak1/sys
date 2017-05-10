@@ -6,8 +6,9 @@ package yube.com.siparisyonetimsistemi.getJson;
 
 public class siparisgosterContact {
 
-    private String urun_adi,fiyat,adet,urun_id,siparis_zamani,durum,personel_id, masa_id;
+    private String urun_adi,fiyat,adet,urun_id,siparis_zamani,durum,personel_id, masa_id,siparis_id;
     public siparisgosterContact(
+            String siparis_id,
             String personel_id,
             String masa_id,
             String adet,
@@ -27,9 +28,18 @@ public class siparisgosterContact {
         this.setFiyat(fiyat);
         this.setSiparis_zamani(siparis_zamani);
         this.setDurum(durum);
+        this.setSiparis_id(siparis_id);
 
 
 
+    }
+
+    public String getSiparis_id() {
+        return siparis_id;
+    }
+
+    public void setSiparis_id(String siparis_id) {
+        this.siparis_id = siparis_id;
     }
 
     public String getUrun_adi() {

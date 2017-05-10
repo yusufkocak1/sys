@@ -3,4 +3,83 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:gravity="center"
+    android:background="@android:color/holo_red_light">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Siparis Detayları"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        />
+
+</LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="25dp">
+        <TextView
+            android:id="@+id/masaid"
+            android:textSize="20dp"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masa ID             :"/>
+        <TextView
+            android:id="@+id/personelid"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personel Adı     :"/>
+        <TextView
+            android:id="@+id/urunid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Ürün ID              :"/>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/urunadi"
+            android:textSize="20dp"
+            android:text="Ürün Adı            :"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/urunmiktar"
+            android:textSize="20dp"
+            android:text="Miktar                :"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fiyat                   :"
+            android:textSize="20dp"
+            android:id="@+id/toplamfiyat"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/siparizamani"
+            android:textSize="20dp"
+            android:text="Siparis Zamani :"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/btnonay"
+            android:textSize="20dp"
+            android:layout_height="50dp"
+            android:text="Onayla"
+            android:textColor="@android:color/white"
+            android:theme="@style/MyButton"/>
+    </LinearLayout>
+
 </LinearLayout>

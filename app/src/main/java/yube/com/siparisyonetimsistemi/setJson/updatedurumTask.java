@@ -21,27 +21,20 @@ import yube.com.siparisyonetimsistemi.R;
  * Created by yusuf on 2.05.2017.
  */
 
-public class siparisTask {
+public class updatedurumTask {
     Context context;
     String ip;
 
-    public siparisTask(Context context) {
+    public updatedurumTask(Context context) {
         ip = context.getString(R.string.ip);
         this.context = context;
     }
 
-    String insertUrl = "http://192.168.0.150/siparis.php";
+    String insertUrl = "http://192.168.0.150/siparisonay.php";
 
-    public void setJsonBtn(
+    public void setJsonBtn(final String siparis_id,
+                           final String durum
 
-                           final String personel_id,
-                           final String urun_id,
-                           final String siparis_zamani,
-                           final String miktar,
-                           final String fiyat,
-                           final String durum,
-                           final String aciklama,
-                           final String masa_id
     ) {
 
 
@@ -78,14 +71,9 @@ public class siparisTask {
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> params = new HashMap<String, String>();//Arraylıstın aga babası
-                params.put("personel_id", personel_id);
-                params.put("urun_id",urun_id);
-                params.put("siparis zamani", siparis_zamani);
-                params.put("fiyat",fiyat);
-                params.put("miktar", miktar);
+                params.put("siparis_id", siparis_id);
                 params.put("durum",durum);
-                params.put("aciklama",aciklama);
-                params.put("masa_id",masa_id);
+
 
 
                 return params;

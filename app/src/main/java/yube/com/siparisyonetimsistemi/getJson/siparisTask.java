@@ -40,6 +40,7 @@ public class siparisTask {
                             try {
                                 JSONObject jsonObject = response.getJSONObject(count);
                                 siparisgosterContact siparisgosterContact = new siparisgosterContact(
+                                       jsonObject.getString("siparis_id"),
                                         jsonObject.getString("personel_id"),
                                         jsonObject.getString("masa_id"),
                                         jsonObject.getString("miktar"),

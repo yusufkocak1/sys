@@ -20,7 +20,7 @@ import yube.com.siparisyonetimsistemi.getJson.siparisgosterContact;
 import static java.lang.Thread.sleep;
 
 public class SiparisPanel extends AppCompatActivity {
-
+    public Thread thread;
     RecyclerView recyclerView;
     RecyclerView.Adapter recyclerAdapter;
     RecyclerView.LayoutManager layoutManager;
@@ -37,28 +37,14 @@ public class SiparisPanel extends AppCompatActivity {
         siparisTask siparisTask = new siparisTask(SiparisPanel.this);
         arrayList = siparisTask.getArrayList();
         try {
-            sleep(500);
+            sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         recyclerAdapter = new siparisRecyclerAdapter(arrayList,SiparisPanel.this);
         recyclerView.setAdapter(recyclerAdapter);
 
- Thread thread=new Thread(new Runnable() {
-     @Override
-     public void run() {
-         try {
-             sleep(5000);
-         } catch (InterruptedException e) {
-             e.printStackTrace();
-         }
-         finish();
-         startActivity(getIntent());
 
-     }
- });
-
-        thread.start();
     }
 
     @Override
@@ -83,6 +69,10 @@ public class SiparisPanel extends AppCompatActivity {
         } else if (id == R.id.back) {
             Intent cagir = new Intent(this, LoginPage.class);
             startActivity(cagir);
+        }
+        else if(id==R.id.action_share){
+            finish();
+            startActivity(getIntent());
         }
 
         return super.onOptionsItemSelected(item);
